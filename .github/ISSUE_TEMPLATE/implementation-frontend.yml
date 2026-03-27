@@ -1,5 +1,5 @@
-name: Implementation – Frontend
-description: Implement one frontend screen or component from an exact Figma frame.
+name: Реализация - Frontend
+description: Реализовать один экран или компонент frontend по точному Figma frame.
 title: "[Frontend] "
 labels:
   - "task_type: implementation"
@@ -8,13 +8,13 @@ body:
   - type: markdown
     attributes:
       value: |
-        Frontend implementation task. Design is the single source of truth for UI.
+        Задача frontend-реализации. Design - единственный источник правды для UI.
         The `task_type` is fixed as `implementation`, contour as `frontend`.
   - type: input
     id: figma_frame
     attributes:
       label: figma_frame
-      description: Direct link to the exact Figma frame (not project, not page).
+      description: Прямая ссылка на точный Figma frame, не на проект и не на страницу.
       placeholder: https://www.figma.com/file/.../...?node-id=...
     validations:
       required: true
@@ -47,16 +47,16 @@ body:
     id: user_scenario
     attributes:
       label: user_scenario
-      description: Which user scenario does this screen or component serve?
-      placeholder: Describe the user flow and expected result.
+      description: Какой пользовательский сценарий обслуживает этот экран или компонент?
+      placeholder: Опишите пользовательский поток и ожидаемый результат.
     validations:
       required: true
   - type: textarea
     id: api_contract
     attributes:
       label: api_contract
-      description: API contract if this task depends on backend. Write `none` if no dependency.
-      placeholder: "endpoint, request schema, response schema — or `none`"
+      description: API contract, если задача зависит от backend. Если зависимости нет, укажите `none`.
+      placeholder: "endpoint, request schema, response schema - или `none`"
     validations:
       required: true
   - type: textarea
@@ -77,36 +77,33 @@ body:
     id: definition_of_ready
     attributes:
       label: definition_of_ready
-      description: All items must be checked before the task moves to Ready.
+      description: Все пункты должны быть выполнены до перевода задачи в Ready.
       value: |
-        - [ ] figma_frame link points to a specific frame, not a project or page
-        - [ ] user_scenario is described
-        - [ ] api_contract is filled or explicitly `none`
-        - [ ] all dependent tasks are closed
+        - [ ] figma_frame указывает на конкретный frame, а не на проект или страницу
+        - [ ] user_scenario заполнен
+        - [ ] api_contract заполнен или явно указан как `none`
+        - [ ] все зависимые задачи закрыты
     validations:
       required: true
   - type: textarea
     id: definition_of_done
     attributes:
       label: definition_of_done
-      description: All items must be checked before the task can be closed.
+      description: Все пункты должны быть выполнены до закрытия задачи.
       value: |
-        - [ ] Figma frame opened via MCP before implementation started
-        - [ ] implementation matches Figma frame
-        - [ ] screenshot taken and compared against Figma frame using the visual checklist:
-          - [ ] platform (mobile / desktop) matches
-          - [ ] background color and accent color match
-          - [ ] font family matches
-          - [ ] layout direction matches
-        - [ ] all checklist items pass; any mismatch documented as a comment before closing
-        - [ ] code committed and pushed
+        - [ ] Figma frame открыт через MCP до начала реализации
+        - [ ] реализация соответствует Figma frame
+        - [ ] сделан screenshot и выполнено сравнение с Figma frame по visual checklist
+        - [ ] совпадают платформа, цвета, шрифт и направление layout
+        - [ ] все проверки пройдены; любые расхождения задокументированы в комментарии до закрытия
+        - [ ] код закоммичен и запушен
     validations:
       required: true
   - type: dropdown
     id: priority
     attributes:
       label: priority
-      description: "high = blocks other tasks; medium = independent implementation task; low = improvement not blocking progress"
+      description: "high = блокирует другие задачи; medium = независимая задача реализации; low = улучшение без блокировки прогресса"
       options:
         - medium
         - high

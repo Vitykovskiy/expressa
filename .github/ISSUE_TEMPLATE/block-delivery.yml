@@ -1,5 +1,5 @@
-name: Block Delivery
-description: Create the parent issue for one integrated deliverable.
+name: Блок поставки
+description: Создать родительскую задачу для одного интегрированного deliverable.
 title: "[Block Delivery] "
 labels:
   - "task_type: block_delivery"
@@ -7,13 +7,13 @@ body:
   - type: markdown
     attributes:
       value: |
-        This template defines one integrated block-level deliverable.
+        Этот шаблон описывает один интегрированный block-level deliverable.
         The `task_type` is fixed by this template as `block_delivery`.
   - type: dropdown
     id: owner_contour
     attributes:
       label: owner_contour
-      description: Choose the contour that owns block orchestration for this deliverable.
+      description: Выберите contour, который отвечает за orchestration этого deliverable.
       options:
         - system-analyst
         - frontend
@@ -32,9 +32,9 @@ body:
   - type: textarea
     id: integrated_goal
     attributes:
-      label: Integrated goal
-      description: What integrated outcome does this block own?
-      placeholder: Describe the block-level deliverable and validation boundary.
+      label: Интегрированная цель
+      description: Какой интегрированный результат принадлежит этому блоку?
+      placeholder: Опишите block-level deliverable и границу валидации.
     validations:
       required: true
   - type: textarea
@@ -55,14 +55,14 @@ body:
     id: definition_of_ready
     attributes:
       label: definition_of_ready
-      placeholder: Relevant system_analysis task is done; integrated boundary is explicit; child implementation tasks exist.
+      placeholder: Релевантная system_analysis-задача завершена; интегрированная граница явная; child implementation tasks существуют.
     validations:
       required: true
   - type: textarea
     id: definition_of_done
     attributes:
       label: definition_of_done
-      placeholder: Child implementation tasks are done; integrated validation passes; block status can move to Done.
+      placeholder: Child implementation tasks завершены; integrated validation проходит; статус блока можно перевести в Done.
     validations:
       required: true
   - type: dropdown

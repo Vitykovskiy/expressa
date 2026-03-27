@@ -1,5 +1,5 @@
-name: Implementation – Backend
-description: Implement one backend endpoint or isolated service unit.
+name: Реализация - Backend
+description: Реализовать один backend endpoint или изолированную service unit.
 title: "[Backend] "
 labels:
   - "task_type: implementation"
@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Backend implementation task.
+        Задача backend-реализации.
         The `task_type` is fixed as `implementation`, contour as `backend`.
   - type: dropdown
     id: model
@@ -39,16 +39,16 @@ body:
     id: api_contract
     attributes:
       label: api_contract
-      description: "API contract — endpoint, request schema, response schema."
-      placeholder: "POST /api/orders — request: { item_id, quantity } — response: { order_id, status }"
+      description: "API contract - endpoint, request schema, response schema."
+      placeholder: "POST /api/orders - request: { item_id, quantity } - response: { order_id, status }"
     validations:
       required: true
   - type: textarea
     id: business_logic
     attributes:
       label: business_logic
-      description: Business rules and constraints this task must implement.
-      placeholder: Describe invariants, validations, and side effects.
+      description: Какие бизнес-правила и ограничения должна реализовать эта задача.
+      placeholder: Опишите инварианты, валидации и side effects.
     validations:
       required: true
   - type: textarea
@@ -69,30 +69,30 @@ body:
     id: definition_of_ready
     attributes:
       label: definition_of_ready
-      description: All items must be checked before the task moves to Ready.
+      description: Все пункты должны быть выполнены до перевода задачи в Ready.
       value: |
-        - [ ] api_contract is filled (endpoint, request schema, response schema)
-        - [ ] business_logic is described
-        - [ ] all dependent tasks are closed
+        - [ ] api_contract заполнен: endpoint, request schema, response schema
+        - [ ] business_logic описан
+        - [ ] все зависимые задачи закрыты
     validations:
       required: true
   - type: textarea
     id: definition_of_done
     attributes:
       label: definition_of_done
-      description: All items must be checked before the task can be closed.
+      description: Все пункты должны быть выполнены до закрытия задачи.
       value: |
-        - [ ] endpoint behavior matches api_contract
-        - [ ] business logic rules are enforced and covered by tests
-        - [ ] error paths are handled explicitly
-        - [ ] code committed and pushed
+        - [ ] поведение endpoint соответствует api_contract
+        - [ ] правила business logic соблюдаются и покрыты тестами
+        - [ ] error paths обработаны явно
+        - [ ] код закоммичен и запушен
     validations:
       required: true
   - type: dropdown
     id: priority
     attributes:
       label: priority
-      description: "high = blocks other tasks; medium = independent implementation task; low = improvement not blocking progress"
+      description: "high = блокирует другие задачи; medium = независимая задача реализации; low = улучшение без блокировки прогресса"
       options:
         - medium
         - high

@@ -1,5 +1,5 @@
-name: E2E Validation
-description: Create the integrated validation task for a block_delivery result or deployed release slice.
+name: E2E-валидация
+description: Создать задачу интеграционной проверки для block_delivery или задеплоенного release slice.
 title: "[E2E] "
 labels:
   - "task_type: e2e"
@@ -7,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        This template creates the integrated validation task.
+        Этот шаблон создаёт задачу интегрированной валидации.
         The `task_type` is fixed by this template as `e2e`.
   - type: dropdown
     id: owner_contour
@@ -48,23 +48,23 @@ body:
   - type: textarea
     id: validation_scope
     attributes:
-      label: Validation scope
-      description: Which integrated user scenarios or acceptance expectations must be validated?
-      placeholder: Describe the target flow, environment, and acceptance boundary.
+      label: Граница валидации
+      description: Какие интегрированные пользовательские сценарии или acceptance expectations нужно проверить?
+      placeholder: Опишите целевой flow, окружение и границу acceptance.
     validations:
       required: true
   - type: textarea
     id: definition_of_ready
     attributes:
       label: definition_of_ready
-      placeholder: Block result is in Waiting for Testing or deployment is ready; scenarios and acceptance criteria are current.
+      placeholder: Block result находится в Waiting for Testing или деплой готов; сценарии и acceptance criteria актуальны.
     validations:
       required: true
   - type: textarea
     id: definition_of_done
     attributes:
       label: definition_of_done
-      placeholder: Critical scenarios pass end to end; defects are routed correctly; release recommendation or rejection is recorded.
+      placeholder: Критические сценарии проходят end-to-end; defects маршрутизированы корректно; рекомендация по релизу зафиксирована.
     validations:
       required: true
   - type: dropdown

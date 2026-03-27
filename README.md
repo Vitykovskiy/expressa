@@ -12,7 +12,6 @@ The template uses two workflow modes recorded in `.ai-dev-template.workflow-stat
 After `setup`, GitHub Issues become the primary execution objects:
 
 - an initiating Epic anchors the initiative;
-- one `business_analysis` issue starts the initiative;
 - one or more bounded `system_analysis` issues produce the canonical specification package slice by slice and decompose only the delivery they fully specify;
 - each `block_delivery` task represents one integrated deliverable and owns child implementation issues;
 - every implementation issue has one owner contour and explicit dependencies;
@@ -22,7 +21,7 @@ After `setup`, GitHub Issues become the primary execution objects:
 
 ## Core Principles
 
-- Implementation starts after the required business-analysis and system-analysis tasks are complete.
+- Implementation starts only after Stage 0 infrastructure is complete and the required system-analysis tasks are complete.
 - `system_analysis` remains the single source of truth for implementation inputs and block decomposition, but analysis may be split into bounded slices.
 - User scenarios, interfaces, contracts, and acceptance expectations exist before contour-owned implementation starts.
 - Each task has exactly one owner contour.
@@ -39,7 +38,7 @@ After `setup`, GitHub Issues become the primary execution objects:
 - `instructions/` - setup instructions plus task-type and contour-specific instructions.
 - `docs/analysis/` - canonical analysis package that gates implementation, deploy, and e2e work.
 - `docs/delivery/` - block decomposition and contour handoff artifacts.
-- `templates/` - reusable templates for initiative, business-analysis, system-analysis, implementation, deploy, and e2e tasks.
+- `templates/` - reusable templates for initiative, system-analysis, implementation, deploy, and e2e tasks.
 - `tasks/` - local scratch space only; not a durable backlog.
 
 ## How A New Project Starts
@@ -47,15 +46,15 @@ After `setup`, GitHub Issues become the primary execution objects:
 1. Create a repository from this template and clone it locally.
 2. Add `.ai-dev-template.config.json` to the root.
 3. Keep `.ai-dev-template.workflow-state.json` in the root with `current_stage = "setup"`.
-4. Connect the repository to GitHub Issues and a GitHub Project board. During `setup`, create or validate the required labels directly through `gh` or equivalent GitHub-integrated tooling, create and link the repository GitHub Project directly, and seed the initial initiative plus `business_analysis` backlog directly. If `project_tracking = github_project`, treat only a project already linked to this repository as an existing match. If no repository-linked project exists yet, create one and attach the repository before leaving `setup`. If the environment blocks GitHub-side setup, report the blocker immediately instead of adding ad hoc bootstrap scripts.
+4. Connect the repository to GitHub Issues and a GitHub Project board. During `setup`, create or validate the required labels directly through `gh` or equivalent GitHub-integrated tooling, create and link the repository GitHub Project directly, and seed the initial initiative plus `system_analysis` backlog directly. If `project_tracking = github_project`, treat only a project already linked to this repository as an existing match. If no repository-linked project exists yet, create one and attach the repository before leaving `setup`. If the environment blocks GitHub-side setup, report the blocker immediately instead of adding ad hoc bootstrap scripts.
 5. Give the agent access to the repository and the business request.
 6. Start with `AGENTS.md`; the router will either keep the repository in `setup` or switch to issue-driven routing after setup is validated.
 
 The repository must not leave `setup` until the starting backlog exists:
 
 - at least one open `initiative` issue exists;
-- exactly one open initial `business_analysis` issue exists;
-- that `business_analysis` issue carries `session: active`.
+- exactly one open initial `system_analysis` issue exists;
+- that `system_analysis` issue carries `session: active`.
 
 ## GitHub Workflow
 
@@ -64,7 +63,6 @@ GitHub Issues and GitHub Project are the operational backbone after setup.
 Required GitHub Issue types:
 
 - `initiative`
-- `business_analysis`
 - `system_analysis`
 - `block_delivery`
 - `implementation`

@@ -18,7 +18,6 @@ Use this file to decompose approved analysis into contour-specific execution tas
 
 | Task | Task type | Owner contour | Parent block task | Depends on | Input artifacts | Expected result |
 | --- | --- | --- | --- | --- | --- | --- |
-| `<task>` | `business_analysis` | `business-analyst` | `n/a` | `<dependencies>` | `<business context>` | `<result>` |
 | `<task>` | `system_analysis` | `system-analyst` | `n/a` | `<dependencies>` | `<intake artifacts>` | `<result>` |
 | `<task>` | `block_delivery` | `<system-analyst/or configured owner>` | `n/a` | `<dependencies>` | `<canonical analysis package>` | `<integrated deliverable ready for validation>` |
 | `<task>` | `implementation` | `<frontend/backend/devops/qa-e2e>` | `<block_delivery task>` | `<dependencies>` | `<analysis artifacts>` | `<result>` |

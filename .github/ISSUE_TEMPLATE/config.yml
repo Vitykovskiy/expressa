@@ -1,1 +1,5 @@
 blank_issues_enabled: false
+contact_links:
+  - name: "Вопрос по workflow"
+    url: "https://github.com/Vitykovskiy/expressa/blob/main/README.md"
+    about: "Сначала проверьте README и workflow-документацию репозитория."

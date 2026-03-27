@@ -1,12 +1,16 @@
 {
   "config_version": 1,
+  "architecture": {
+    "use_fsd": false
+  },
   "language": {
-    "documentation": "en",
-    "issues": "en",
-    "pull_requests": "en",
-    "comments": "en",
-    "commits": "en",
-    "labels": "en"
+    "documentation": "ru",
+    "issues": "ru",
+    "pull_requests": "ru",
+    "comments": "ru",
+    "commits": "ru",
+    "labels": "en",
+    "agent_instructions": "en"
   },
   "workflow": {
     "execution_mode": "autonomous",
@@ -14,34 +18,21 @@
     "project_tracking": "github_project"
   },
   "pull_requests": {
-    "enabled": true,
+    "enabled": false,
     "creation_mode": "for_significant_tasks",
     "review": {
-      "required": true,
-      "reviewers": "human",
-      "agent_must_read_comments": true,
-      "agent_must_reply_to_comments": true,
-      "agent_must_apply_accepted_feedback": true
+      "required": false,
+      "reviewers": "human"
     },
     "merge": {
-      "squash_commits": true,
+      "squash_commits": false,
       "integration_method": "merge",
-      "min_approvals": 1,
-      "require_green_checks": true,
-      "allow_agent_self_merge": false
+      "require_green_checks": false,
+      "allow_agent_self_merge": false,
+      "agent_configure_branch_protection": false
     }
   },
   "project_map": {
     "enabled": true
-  },
-  "github": {
-    "required_token_scopes": [
-      "repo",
-      "project"
-    ],
-    "recommended_token_scopes": [
-      "read:org",
-      "workflow"
-    ]
   }
 }

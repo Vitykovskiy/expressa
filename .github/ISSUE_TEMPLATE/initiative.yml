@@ -1,5 +1,5 @@
-name: Initiative
-description: Create the top-level outcome that anchors an issue-driven delivery stream.
+name: Инициатива
+description: Создать верхнеуровневую цель, которая запускает issue-driven delivery stream.
 title: "[Initiative] "
 labels:
   - "task_type: initiative"
@@ -7,31 +7,30 @@ body:
   - type: markdown
     attributes:
       value: |
-        This template defines the top-level delivery anchor for one outcome.
+        Этот шаблон создаёт верхнеуровневую точку входа для одного результата.
         The `task_type` is fixed by this template as `initiative`.
   - type: dropdown
     id: owner_contour
     attributes:
       label: owner_contour
-      description: Primary owner contour for this initiative.
+      description: Основной owner contour для этой инициативы.
       options:
-        - business-analyst
         - system-analyst
     validations:
       required: true
   - type: textarea
     id: goal
     attributes:
-      label: Goal
-      description: What outcome should exist when this initiative is done?
-      placeholder: Describe the strategic outcome.
+      label: Цель
+      description: Какой результат должен существовать после завершения инициативы?
+      placeholder: Опишите стратегический результат.
     validations:
       required: true
   - type: textarea
     id: parent_initiative
     attributes:
       label: parent_initiative
-      description: Initiatives are top-level. Record `none` unless this is explicitly nested by repository policy.
+      description: Инициатива верхнеуровневая. Укажите `none`, если политика репозитория явно не требует вложенности.
       placeholder: none
     validations:
       required: true
@@ -39,7 +38,7 @@ body:
     id: depends_on
     attributes:
       label: depends_on
-      description: List blocking tasks explicitly or write `none`.
+      description: Явно перечислите блокирующие задачи или укажите `none`.
       placeholder: none
     validations:
       required: true
@@ -47,7 +46,7 @@ body:
     id: canonical_inputs
     attributes:
       label: canonical_inputs
-      description: Link the request, source documents, or prerequisite artifacts.
+      description: Сошлитесь на запрос, исходные документы или prerequisite artifacts.
       placeholder: docs/01-product-vision.md, stakeholder request, issue links
     validations:
       required: true
@@ -55,23 +54,23 @@ body:
     id: definition_of_ready
     attributes:
       label: definition_of_ready
-      description: Preconditions for starting this initiative.
-      placeholder: Setup complete; request identified; no higher-level initiative covers the same outcome.
+      description: Предусловия для старта этой инициативы.
+      placeholder: Setup завершён; запрос определён; другая инициатива не покрывает тот же результат.
     validations:
       required: true
   - type: textarea
     id: definition_of_done
     attributes:
       label: definition_of_done
-      description: Evidence required to close this initiative.
-      placeholder: Child tasks created; dependencies recorded; GitHub Project reflects the execution chain.
+      description: Какие evidence нужны для закрытия инициативы.
+      placeholder: Дочерние задачи созданы; зависимости зафиксированы; GitHub Project отражает цепочку исполнения.
     validations:
       required: true
   - type: dropdown
     id: project_status
     attributes:
       label: project_status
-      description: Initial GitHub Project state for this issue.
+      description: Начальный статус issue в GitHub Project.
       options:
         - Inbox
         - Ready

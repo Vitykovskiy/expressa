@@ -2,28 +2,28 @@
 
 ## GitHub Project
 
-- URL: `<paste GitHub Project URL here>`
+- URL: `https://github.com/users/Vitykovskiy/projects/21`
 - Board type: `Kanban`
-- Required statuses present: `yes/no`
+- Required statuses present: `yes`
 - Required fields present: `Status`, `Task Type`, `Owner Contour`, `Priority`
-- Project item creation verified: `yes/no`
-- Setup validation status: `Unknown`
-- Notes: If `project_tracking = github_project`, this project must exist before `setup` can be considered complete.
+- Project item creation verified: `yes`
+- Setup validation status: `Validated on 2026-03-28`
+- Notes: Repository `Vitykovskiy/expressa` is linked to Project `expressa`; required fields `Status`, `Task Type`, `Owner Contour`, and `Priority` are configured.
 
 ## GitHub Issues
 
-- Initiative issue creation verified: `yes/no`
-- Initial seeded `business_analysis` issue verified: `yes/no`
-- Operational issue templates verified: `yes/no`
-- Required task metadata captured by forms: `yes/no`
-- Active-session label `session: active` verified: `yes/no`
-- Labels prepared for workflow use: `yes/no`
-- Notes: Record the identifiers or URLs needed to prove that workflow-required issue records exist.
+- Initiative issue creation verified: `yes`
+- Initial seeded `system_analysis` issue verified: `yes`
+- Operational issue templates verified: `yes`
+- Required task metadata captured by forms: `yes`
+- Active-session label `session: active` verified: `yes`
+- Labels prepared for workflow use: `yes`
+- Notes: Seeded backlog issues are `#1 https://github.com/Vitykovskiy/expressa/issues/1` and `#2 https://github.com/Vitykovskiy/expressa/issues/2`; `#2` carries the sole open `session: active` label.
 
 ## Effective Workflow Policy
 
-- Effective `.ai-dev-template.config.json` committed and pushed: `yes/no`
-- Notes: If setup used a modified configuration file, record the commit or push evidence here.
+- Effective `.ai-dev-template.config.json` committed and pushed: `yes`
+- Notes: The current setup commit includes the effective repository configuration used during bootstrap.
 
 ## Environment Variables
 
@@ -34,7 +34,7 @@
 
 | Secret | Where It Lives | Purpose | Stage first needed | Status |
 | --- | --- | --- | --- | --- |
-| `gh` auth token | GitHub CLI auth store | Issues and Project automation | `setup` | Unknown |
+| `gh` auth token | GitHub CLI auth store | Issues and Project automation | `setup` | Validated (`repo`, `project`, `read:org`, `workflow`) |
 
 ## GitHub Token Scope Baseline
 
@@ -61,12 +61,13 @@ Document every external system that matters to development, deploy, or e2e valid
 
 | Integration | Purpose | Stage first needed | Status | Notes |
 | --- | --- | --- | --- | --- |
-| `<integration>` | `<purpose>` | `<setup/business_analysis/system_analysis/implementation/deploy/e2e>` | `<status>` | `<notes>` |
+| GitHub Issues | Workflow task tracking and active-session routing | `setup` | Configured | Open issues `#1` and `#2` created successfully through `gh` |
+| GitHub Project | Delivery status board and required workflow fields | `setup` | Configured | Project `expressa` linked to repository with validated custom fields and statuses |
 
 ## Integration Status
 
-- GitHub repository access: `Unknown`
-- GitHub Project access: `Unknown`
+- GitHub repository access: `Validated`
+- GitHub Project access: `Validated`
 - Deployment environment access: `Unknown`
 - E2E environment readiness: `Unknown`
 

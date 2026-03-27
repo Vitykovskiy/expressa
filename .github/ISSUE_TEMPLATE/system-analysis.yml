@@ -1,5 +1,5 @@
-name: System Analysis
-description: Create the specification task that produces the canonical implementation-ready analysis package.
+name: Системный анализ
+description: Создать задачу спецификации, которая готовит canonical analysis package для реализации.
 title: "[System Analysis] "
 labels:
   - "task_type: system_analysis"
@@ -7,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        This template is for the system-analysis issue that turns business intake into implementation-ready specifications.
+        Этот шаблон создаёт задачу системного анализа, которая переводит инициативу в implementation-ready спецификацию.
         The `task_type` is fixed by this template as `system_analysis`.
   - type: dropdown
     id: owner_contour
@@ -28,8 +28,8 @@ body:
     id: canonical_inputs
     attributes:
       label: canonical_inputs
-      description: Link the business-analysis outputs and any prerequisite artifacts.
-      placeholder: business_analysis issue, docs/analysis/* placeholders, upstream decisions
+      description: Укажите инициативу, исходные документы и любые prerequisite artifacts.
+      placeholder: initiative issue, docs/analysis/*, upstream decisions
     validations:
       required: true
   - type: textarea
@@ -44,34 +44,34 @@ body:
     attributes:
       label: ui_screens
       description: |
-        Required when the initiative includes UI. List each screen paired with its exact Figma frame link.
-        Format per line: `Screen name — https://www.figma.com/file/...?node-id=...`
-        Write `none` if no UI is involved.
+        Обязательно для инициатив с UI. Укажите каждый экран и точную ссылку на Figma frame.
+        Формат строки: `Название экрана - https://www.figma.com/file/...?node-id=...`
+        Если UI нет, укажите `none`.
       placeholder: |
-        Home screen — https://www.figma.com/file/...?node-id=...
-        Cart screen — https://www.figma.com/file/...?node-id=...
+        Home screen - https://www.figma.com/file/...?node-id=...
+        Cart screen - https://www.figma.com/file/...?node-id=...
     validations:
       required: true
   - type: textarea
     id: decomposition_scope
     attributes:
-      label: Decomposition scope
-      description: Which integrated blocks, contracts, or open questions must this task resolve?
-      placeholder: Describe the specification and decomposition boundary.
+      label: Граница декомпозиции
+      description: Какие integrated blocks, контракты или открытые вопросы должна закрыть эта задача?
+      placeholder: Опишите границу спецификации и декомпозиции.
     validations:
       required: true
   - type: textarea
     id: definition_of_ready
     attributes:
       label: definition_of_ready
-      placeholder: Business-analysis outputs are complete or equivalent context exists; business blockers are closed.
+      placeholder: Контекст инициативы достаточен; входные ограничения зафиксированы; blocker'ы для анализа закрыты.
     validations:
       required: true
   - type: textarea
     id: definition_of_done
     attributes:
       label: definition_of_done
-      placeholder: Canonical analysis package is ready; contour decomposition exists; required block_delivery and child tasks are published.
+      placeholder: Canonical analysis package готов; contour decomposition существует; нужные block_delivery и child issues опубликованы.
     validations:
       required: true
   - type: dropdown

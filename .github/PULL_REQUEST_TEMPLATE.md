@@ -6,26 +6,26 @@
 > `feat(auth): add GitHub SSO for admins`
 > `fix: prevent duplicate webhook delivery processing`
 
-# What Was Done
+# Что сделано
 
-Describe the implemented changes.
+Опишите выполненные изменения.
 
-# Why
+# Зачем
 
-Explain the business or technical reason for this PR.
+Объясните бизнесовую или техническую причину этого PR.
 
-# Related Issues
+# Связанные задачи
 
-List related issues, Epics, or task links.
+Перечислите связанные issues, Epic или task links.
 
-# Documentation Changes
+# Изменения в документации
 
-Describe which docs were updated and why.
+Укажите, какие документы были обновлены и почему.
 
-# Risks / Limitations
+# Риски / ограничения
 
-List rollout risks, known limitations, or open follow-up items.
+Перечислите риски rollout, известные ограничения или открытые follow-up items.
 
-# How To Verify
+# Как проверить
 
-Provide the verification steps used for this change.
+Опишите шаги проверки, использованные для этого изменения.

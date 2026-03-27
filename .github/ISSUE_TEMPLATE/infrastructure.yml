@@ -1,5 +1,5 @@
-name: Infrastructure
-description: "Stage 0 — set up CI/CD, VPS, secrets, and environment variables before implementation begins."
+name: Инфраструктура
+description: "Stage 0 - настроить CI/CD, VPS, secrets и переменные окружения до начала реализации."
 title: "[Infrastructure] "
 labels:
   - "task_type: infrastructure"
@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Stage 0 infrastructure task. Must be completed before any implementation task starts.
+        Задача инфраструктуры Stage 0. Должна быть завершена до старта любых implementation-задач.
         The `task_type` is fixed as `infrastructure`, contour as `devops`.
   - type: dropdown
     id: model
@@ -32,23 +32,23 @@ body:
     id: infrastructure_change
     attributes:
       label: infrastructure_change
-      description: What infrastructure change does this task perform?
-      placeholder: Describe CI/CD setup, VPS preparation, or environment wiring.
+      description: Какое инфраструктурное изменение выполняет эта задача?
+      placeholder: Опишите настройку CI/CD, подготовку VPS или подключение окружений.
     validations:
       required: true
   - type: textarea
     id: env_vars_and_secrets
     attributes:
       label: env_vars_and_secrets
-      description: List all environment variables and secrets this task must provision.
-      placeholder: "DATABASE_URL → VPS env; API_KEY → GitHub Secrets"
+      description: Перечислите все переменные окружения и секреты, которые нужно подготовить.
+      placeholder: "DATABASE_URL -> VPS env; API_KEY -> GitHub Secrets"
     validations:
       required: true
   - type: textarea
     id: target_environment
     attributes:
       label: target_environment
-      description: Which environment does this task target?
+      description: На какое окружение нацелена эта задача?
       placeholder: staging / production
     validations:
       required: true
@@ -70,32 +70,32 @@ body:
     id: definition_of_ready
     attributes:
       label: definition_of_ready
-      description: All items must be checked before the task moves to Ready.
+      description: Все пункты должны быть выполнены до перевода задачи в Ready.
       value: |
-        - [ ] infrastructure_change is described
-        - [ ] env_vars_and_secrets list is complete
-        - [ ] target_environment is specified (staging / production)
+        - [ ] infrastructure_change описан
+        - [ ] список env_vars_and_secrets полный
+        - [ ] target_environment указан: staging или production
     validations:
       required: true
   - type: textarea
     id: definition_of_done
     attributes:
       label: definition_of_done
-      description: All items must be checked before the task can be closed.
+      description: Все пункты должны быть выполнены до закрытия задачи.
       value: |
-        - [ ] CI/CD pipeline runs successfully on push
-        - [ ] VPS is accessible and configured
-        - [ ] all secrets are in GitHub Secrets
-        - [ ] all environment variables are set in target environment
-        - [ ] autodeploy to VPS triggers from the main branch
-        - [ ] evidence committed and pushed
+        - [ ] CI/CD pipeline успешно проходит на push
+        - [ ] VPS доступен и настроен
+        - [ ] все secrets заведены в GitHub Secrets
+        - [ ] все env vars заданы в целевом окружении
+        - [ ] автодеплой на VPS запускается от ветки main
+        - [ ] evidence закоммичен и запушен
     validations:
       required: true
   - type: dropdown
     id: priority
     attributes:
       label: priority
-      description: "high = blocks other tasks; medium = independent task; low = improvement not blocking progress"
+      description: "high = блокирует другие задачи; medium = независимая задача; low = улучшение без блокировки прогресса"
       options:
         - high
         - medium

@@ -11,7 +11,7 @@ Allowed `current_stage` values:
 
 `setup` is the only repository-wide stage. After setup completes, the repository switches to `issue_driven` and all routing is performed through GitHub Issues, dependencies, owner contours, block-level delivery tasks, and GitHub Project state.
 
-`issue_driven` must not start from an empty backlog. Setup seeds the first `initiative` plus the first `business_analysis` issue before the repository leaves `setup`.
+`issue_driven` must not start from an empty backlog. Setup seeds the first `initiative` plus the first `system_analysis` issue before the repository leaves `setup`.
 
 ## Bootstrap State Rule
 
@@ -60,8 +60,7 @@ All post-setup work must be represented by GitHub Issues with one of these task 
 
 | Task type | Primary owner contour | Purpose |
 | --- | --- | --- |
-| `initiative` | `business-analyst` or `system-analyst` | top-level business outcome and decomposition anchor |
-| `business_analysis` | `business-analyst` | clarify problem, users, scope, constraints, success expectations, and workflow vocabulary |
+| `initiative` | `system-analyst` | top-level business outcome and decomposition anchor |
 | `system_analysis` | `system-analyst` | produce the canonical specification package for one bounded analysis slice, plus the related block-level decomposition and child implementation plan |
 | `block_delivery` | `system-analyst` or delivery owner defined by repository policy | parent issue for one integrated deliverable that waits for all required child implementation tasks and later block-level validation |
 | `implementation` | one of `frontend`, `backend`, `devops`, `qa-e2e` | execute one contour-owned child task within a block-level deliverable |
@@ -93,8 +92,8 @@ Attribute rules:
 
 Hierarchy rules:
 
-- only one `business_analysis` issue should initiate a new delivery stream after setup;
-- `business_analysis` hands off to one or more bounded `system_analysis` issues for the same initiative or version stream;
+- setup seeds exactly one initial `system_analysis` issue to start a new delivery stream;
+- that initial `system_analysis` issue may later create additional bounded `system_analysis` follow-ups for the same initiative or version stream;
 - each `system_analysis` issue must declare a bounded scope before creating downstream work;
 - `system_analysis` creates one or more `block_delivery` parent issues only for the slice it fully specifies;
 - each `block_delivery` issue owns all required child implementation issues for that integrated outcome;
@@ -213,8 +212,8 @@ Mandatory completion conditions:
 - if no repository-linked GitHub Project existed before setup, setup created one, linked the repository, and applied the required fields and statuses;
 - setup executed the required GitHub bootstrap actions directly and verified the resulting labels, project fields, board view, and seeded backlog;
 - setup created or verified the `session: active` label used to mark the active issue;
-- setup created or verified the initial seeded backlog, including at least one open `initiative` issue and exactly one open initial `business_analysis` issue;
-- the initial `business_analysis` issue is marked with `session: active` before the repository enters `issue_driven`;
+- setup created or verified the initial seeded backlog, including at least one open `initiative` issue and exactly one open initial `system_analysis` issue;
+- the initial `system_analysis` issue is marked with `session: active` before the repository enters `issue_driven`;
 - required GitHub workflow infrastructure for the configured process is prepared during setup, including project fields, labels, and issue templates needed by later tasks;
 - setup-side changes to instructions, docs, labels, project structure, or repository workflow assets are verified and recorded before setup exit;
 - the repository has a top-level initiating Epic template or documented creation path.
@@ -261,7 +260,7 @@ Done when:
 
 Ready when:
 
-- `business_analysis` outputs are complete or the initiative already has equivalent business context recorded;
+- the initiative context and triggering request are already recorded in the initiative issue or equivalent canonical docs;
 - business blockers are closed.
 
 Done when:
@@ -346,7 +345,7 @@ Stop and mark a task `Blocked` when any of the following is true:
 
 Blocker routing rules:
 
-- missing business context -> create or reopen a `business_analysis` task;
+- missing business context -> update the initiative issue or create a linked clarification `system_analysis` task before delivery continues;
 - missing specifications, contracts, or decomposition -> block the current implementation issue and create or reopen a linked `system_analysis` follow-up task;
 - missing UX behavior, screen states, or design assets -> create or reopen a `system_analysis` task;
 - failed rollout prerequisites -> block `deploy` and create follow-up tasks in the owning contour;
@@ -356,8 +355,8 @@ Blocker routing rules:
 
 Canonical post-setup chain:
 
-1. `business_analysis`
-2. one or more bounded `system_analysis` issues
+1. initial `system_analysis`
+2. one or more bounded follow-up `system_analysis` issues
 3. `block_delivery`
 4. child `implementation` issues by contour
 5. block-level validation by `qa-e2e`

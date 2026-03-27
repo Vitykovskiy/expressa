@@ -29,11 +29,11 @@ See `AGENTS.md` for routing and `docs/07-workflow.md` for the canonical workflow
 ## Current Status
 
 - Workflow state file: `.ai-dev-template.workflow-state.json`
-- Current mode: `<setup|issue_driven>`
-- Active initiative: `<fill-initiative>`
-- Active issue signal: `<issue number carrying session: active or none>`
-- Current owner role: `<fill-role>`
-- Delivery status: `<fill-status>`
+- Current mode: `issue_driven`
+- Active initiative: `#1 [Initiative] Стартовая delivery-цепочка и baseline-спецификация Expressa`
+- Active issue signal: `#2 [System Analysis] Baseline analysis package для Expressa`
+- Current owner role: `system-analyst`
+- Delivery status: `Setup complete; GitHub workflow backbone validated; initial system_analysis task is active`
 
 ## Canonical Artifact Map
 

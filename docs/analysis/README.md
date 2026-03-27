@@ -17,7 +17,6 @@ Implementation, deploy, and e2e tasks work from these artifacts as their canonic
 
 ## Source Of Truth By Role
 
-- business analyst: intake-facing product docs plus scenario context
 - system analyst: all analysis files in this folder
 - frontend: `user-scenarios.md`, `ui-specification.md`, consumed portions of `integration-contracts.md`, `version-scope-and-acceptance.md`
 - backend: `system-modules.md`, `domain-model.md`, produced and consumed portions of `integration-contracts.md`, `cross-cutting-concerns.md`, `version-scope-and-acceptance.md`
