@@ -4,14 +4,24 @@
 
 | Concern | Requirement | Affected contours | Notes |
 | --- | --- | --- | --- |
-| `<security/logging/observability/etc.>` | `<requirement>` | `<contours>` | `<notes>` |
+| Identity and access | Production access is Telegram-based; blocked users must be denied; backoffice permissions are role-based | frontend, backend, qa-e2e | Test environment bypasses Telegram auth through `DISABLE_TG_AUTH=true` |
+| Auditability | Confirm, ready, and reject actions must persist responsible barista identity | backend, qa-e2e | Acceptance and smoke flow depend on this evidence |
+| Availability consistency | Temporary availability changes must affect ordering behavior without altering structural menu data | frontend, backend, qa-e2e | Access boundaries differ for barista and administrator |
+| Slot-capacity correctness | Capacity accounting must stay consistent with working hours, slot step, and active order statuses | backend, qa-e2e | Critical business rule for pickup promise reliability |
+| Notification reliability | Customer status notifications and barista reminders must be observable and decoupled from core state changes | backend, devops, qa-e2e | Delivery failure must not corrupt order state |
+| Documentation continuity | Product context and analysis must remain in repository docs as canonical source of truth | all contours | Prevents dependence on transient session memory |
+| Deployment verification | Every push updates test environment and runs build, smoke, and e2e checks on VPS | devops, qa-e2e | Required merge gate for v1 |
 
 ## Shared Rules
 
-- `<rule>`
-- `<rule>`
+- Direct URL access outside Telegram is out of scope and must not become an accidental supported path in v1.
+- Customer and backoffice bots are separate access channels and should remain separate in contracts and operational setup.
+- Currency values use integer rubles.
+- Promotions and discount logic are intentionally excluded from v1.
+- Smoke coverage must validate empty-database bootstrap, root admin creation, seed data, and the basic order lifecycle.
 
 ## Operational Notes
 
-- `<note>`
-- `<note>`
+- The test environment must seed a barista and a customer with fixed Telegram identifiers for smoke and e2e execution.
+- Smoke setup must set working hours to `00:00-23:59` to avoid time-window flakiness during execution.
+- Reminder cadence is still open and should be finalized before reminder implementation tasks move to `Ready`.

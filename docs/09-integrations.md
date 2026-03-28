@@ -29,6 +29,8 @@
 
 | Variable | Required | Purpose | Stage first needed | Status |
 | --- | --- | --- | --- | --- |
+| `ADMIN_TELEGRAM_ID` | Yes | Defines the single root administrator to upsert on backend startup | `implementation` | Required by product brief |
+| `DISABLE_TG_AUTH` | Yes for test environment | Disables Telegram auth validation in test runs and switches backend to seeded identities | `e2e` | Required by product brief |
 
 ## Tokens And Secrets
 
@@ -63,6 +65,9 @@ Document every external system that matters to development, deploy, or e2e valid
 | --- | --- | --- | --- | --- |
 | GitHub Issues | Workflow task tracking and active-session routing | `setup` | Configured | Open issues `#1` and `#2` created successfully through `gh` |
 | GitHub Project | Delivery status board and required workflow fields | `setup` | Configured | Project `expressa` linked to repository with validated custom fields and statuses |
+| Telegram customer bot | Launches customer web app and sends customer order-status notifications | `implementation` | Planned | Direct URL access outside Telegram is not supported in v1 |
+| Telegram backoffice bot | Launches backoffice web app and sends barista reminders and notifications | `implementation` | Planned | Separate bot from customer-facing access path |
+| Telegram WebApp auth | Primary identity and access mechanism in production | `implementation` | Planned | Test environment bypasses Telegram validation with `DISABLE_TG_AUTH=true` |
 
 ## Integration Status
 
