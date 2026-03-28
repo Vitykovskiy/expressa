@@ -59,10 +59,11 @@
 - Preconditions: User has `barista` role and access to the `Availability` tab.
 - Main flow:
   1. Barista opens the `Availability` tab.
-  2. Barista changes temporary availability for a menu item, option, or addon.
-  3. Customer-facing catalog reflects the new availability state for future order attempts.
-- Expected result: Availability changes affect ordering behavior without changing menu structure or prices.
-- Failure or edge cases: barista must not be able to edit prices or structural menu data.
+  2. System loads the full availability read-model, including currently unavailable entities that may need re-enabling.
+  3. Barista changes temporary availability for a menu item, option, or addon.
+  4. Customer-facing catalog reflects the new availability state for future order attempts.
+- Expected result: Availability changes affect ordering behavior without changing menu structure or prices, and previously unavailable entities remain visible for re-enable actions.
+- Failure or edge cases: barista must not be able to edit prices or structural menu data; if read-model loading fails, availability mutations must not proceed on stale or partial data.
 
 ### Scenario `BAR-03` Barista receives reminders for orders waiting for action
 

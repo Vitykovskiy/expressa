@@ -11,6 +11,8 @@ Implementation, deploy, and e2e tasks work from these artifacts as their canonic
 - Follow-up analysis issues:
   - `#10` resolved frontend frame mapping and decomposition for Slice B
   - `#19` resolved customer cart/history clarification inputs for Slice B frontend flow
+  - `#21` resolved backoffice full-screen mapping and responsive shell scope for Slice B
+  - `#22` resolved barista-capable backoffice availability read-model contract for Slice B
 
 ## Required Files
 

@@ -41,7 +41,7 @@ Issue `#2` closes only the first delivery slice:
 | Customer can view order history and receives status notifications including rejection reason | `CUS-02` | E2E validates history visibility and contract tests validate notification payload content |
 | Barista can confirm, reject with reason, mark ready, and close an order | `BAR-01` | Smoke and e2e validate status transitions and UI actions in backoffice |
 | Slot-capacity accounting follows status rules | `CUS-01`, `BAR-01` | Backend tests and e2e validate capacity consumption for active statuses only |
-| Barista can change temporary availability without changing menu structure or prices | `BAR-02` | Backoffice UI and API tests validate access boundaries and behavior |
+| Barista can load full availability data (including unavailable entities) and change temporary availability without changing menu structure or prices | `BAR-02` | Backoffice UI and API tests validate shared availability read-model visibility and mutation access boundaries |
 | Administrator can manage menu, prices, working hours, slot capacity, roles, and blocked users | `ADM-01`, `ADM-02` | E2E validates restricted tabs and successful admin actions |
 | Audit data stores the responsible barista for confirm, ready, and reject actions | `BAR-01` | Backend tests and smoke verification inspect persisted audit fields |
 | Empty database bootstrap creates administrator and seed data required for smoke flow | Supporting setup | Smoke test initializes empty DB and verifies seeded baseline entities |

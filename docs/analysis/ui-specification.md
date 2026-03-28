@@ -19,7 +19,7 @@ Source design files:
 | Slot selection / checkout | Customer | Choose an available current-day pickup slot and place the order | Loading, available slots, full slots, submission error, success | Slots are 10-minute intervals within configured working hours |
 | Order history | Customer | Review current and past orders | Empty, populated | Must show current user's orders only on a dedicated history screen |
 | Backoffice orders tab | Barista, Administrator | Review incoming orders and perform status actions | Empty, queue present, action in progress, transition error | Actions include confirm, reject with reason, ready, close |
-| Backoffice availability tab | Barista, Administrator | Toggle temporary availability for items, options, and addons | Loading, editable, save error | Barista can change availability only, not structure or pricing |
+| Backoffice availability tab | Barista, Administrator | Toggle temporary availability for items, options, and addons | Loading, editable (including unavailable entities), save error, reload error | Data source is `POST /backoffice/availability/list`; barista can change availability only, not structure or pricing |
 | Backoffice menu tab | Administrator | Manage categories, products, sizes, addons, and prices | Loading, editable, validation error | Hidden from barista; mobile and desktop frames are mapped; loading and save/error feedback may follow shared backoffice interaction patterns without dedicated Figma states |
 | Backoffice users tab | Administrator | Assign barista role and block users | Loading, editable, validation error | Hidden from barista |
 | Backoffice settings tab | Administrator | Manage working hours and slot capacity | Loading, editable, validation error | Hidden from barista |
@@ -77,6 +77,15 @@ Backoffice file base:
 - Customer ordering must prevent checkout with invalid configuration, unavailable products, or unavailable slots.
 - Rejection flow in backoffice must require a reason before the action is accepted.
 - Role-based tab visibility and permission checks must match the backoffice access matrix.
+
+## Backoffice Availability Data Loading
+
+- On entering the `Availability` tab, frontend must request `POST /backoffice/availability/list` with an empty JSON object (`{}`).
+- The response must be treated as the canonical dataset for both `barista` and `administrator`.
+- The tab must render entities with `isTemporarilyAvailable=false` so users can re-enable them.
+- Frontend must not use `GET /customer/menu` as an availability-management data source because unavailable entities are excluded there.
+- Frontend must not require `POST /admin/menu/list` for barista flows.
+- After any availability mutation, frontend must refresh the changed state from mutation response or by reloading `POST /backoffice/availability/list`.
 
 ## Customer Cart Mutation Semantics
 
