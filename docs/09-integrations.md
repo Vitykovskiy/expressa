@@ -88,8 +88,8 @@ Document every external system that matters to development, deploy, or e2e valid
 
 - GitHub repository access: `Validated`
 - GitHub Project access: `Validated`
-- Deployment environment access: `Validated by Stage0 workflow and Slice A deploy workflow run 23678475499`
-- E2E environment readiness: `Ready for #9; deploy evidence and QA assets are available`
+- Deployment environment access: `Validated by Stage0 workflow, Slice A deploy workflow run 23678475499, and manual Slice B rollout evidence in docs/delivery/slice-b-deploy-evidence.md`
+- E2E environment readiness: `Ready for #18 with slice-b deploy evidence and QA assets available`
 
 ## Stage0 Infrastructure Baseline
 
@@ -153,6 +153,17 @@ Document every external system that matters to development, deploy, or e2e valid
 - Target endpoint verification:
   - `http://216.57.105.133:18081/healthz` -> `200`
   - `http://216.57.105.133:18081/customer/menu` with `x-telegram-id` -> `200`
+
+## Slice B Deploy Path
+
+- Deploy issue: `#17`
+- Deploy evidence contract: `docs/delivery/slice-b-deploy-evidence.md`
+- Deployment mode: manual VPS rollout using deterministic build-on-deploy image tags from commit `bd8287da3739eff54084f4bba3a73404d8f49535`
+- Target endpoint verification:
+  - `http://216.57.105.133:18081/healthz` -> `200`
+  - `http://216.57.105.133:18082/healthz` -> `200`
+  - `http://216.57.105.133:18081/customer/menu` with `x-telegram-id` -> `200`
+- Runtime note: Slice B deploy replaced active Slice A runtime on staging because both stacks bind backend host port `18081`.
 
 ## Setup Notes
 
