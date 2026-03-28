@@ -15,9 +15,9 @@ Source design files:
 | --- | --- | --- | --- | --- |
 | Customer menu catalog | Customer | Browse categories and open products | Loading, populated, empty, blocked user, unavailable items | Use mapped customer catalog/group frames with direct `node-id` links |
 | Product details / configuration | Customer | Select size and addons before adding to cart | Default, invalid config, unavailable option | Drinks require size `S/M/L`; addon groups may allow multiple or mutually exclusive choices |
-| Cart | Customer | Review and edit selected items | Empty, populated, validation error | Cart must remain editable before order placement; exact edit/delete mutation contract is tracked in follow-up analysis issue `#19` |
+| Cart | Customer | Review and edit selected items | Empty, populated, validation error | Cart remains editable before order placement through quantity controls and contract-defined cart mutations |
 | Slot selection / checkout | Customer | Choose an available current-day pickup slot and place the order | Loading, available slots, full slots, submission error, success | Slots are 10-minute intervals within configured working hours |
-| Order history | Customer | Review current and past orders | Empty, populated | Must show current user's orders only; dedicated history-screen composition is tracked in follow-up analysis issue `#19` |
+| Order history | Customer | Review current and past orders | Empty, populated | Must show current user's orders only on a dedicated history screen |
 | Backoffice orders tab | Barista, Administrator | Review incoming orders and perform status actions | Empty, queue present, action in progress, transition error | Actions include confirm, reject with reason, ready, close |
 | Backoffice availability tab | Barista, Administrator | Toggle temporary availability for items, options, and addons | Loading, editable, save error | Barista can change availability only, not structure or pricing |
 | Backoffice menu tab | Administrator | Manage categories, products, sizes, addons, and prices | Loading, editable, validation error | Hidden from barista |
@@ -41,7 +41,7 @@ Backoffice file base:
 | Cart (populated) | `https://www.figma.com/design/VrpRnba18dTC80u5XfRfXh/Expressa-Customer?node-id=1-196` | Populated cart state |
 | Cart (empty) | `https://www.figma.com/design/VrpRnba18dTC80u5XfRfXh/Expressa-Customer?node-id=12-276` | Empty cart state |
 | Slot selection / checkout | `https://www.figma.com/design/VrpRnba18dTC80u5XfRfXh/Expressa-Customer?node-id=1-196` | Checkout CTA is present on this frame; slot picker behavior is specified by contract and scenarios |
-| Order history | `https://www.figma.com/design/VrpRnba18dTC80u5XfRfXh/Expressa-Customer?node-id=1-3` | History entry point is shown in top action icons; exact dedicated history composition is deferred to follow-up analysis issue `#19` |
+| Order history | `https://www.figma.com/design/VrpRnba18dTC80u5XfRfXh/Expressa-Customer?node-id=12-4` | Dedicated history screen composition |
 | Backoffice orders tab | `https://www.figma.com/design/gFucXna9RTbuxNmyVukOYD/Expressa-Admin?node-id=2-455` | Includes queue, status actions, and filter tabs |
 | Backoffice reject-reason modal | `https://www.figma.com/design/gFucXna9RTbuxNmyVukOYD/Expressa-Admin?node-id=2-721` | Reject flow reason requirement UI |
 | Backoffice availability tab | `https://www.figma.com/design/gFucXna9RTbuxNmyVukOYD/Expressa-Admin?node-id=2-560` | Tab target from shared mobile shell |
@@ -65,6 +65,16 @@ Backoffice file base:
 - Rejection flow in backoffice must require a reason before the action is accepted.
 - Role-based tab visibility and permission checks must match the backoffice access matrix.
 
+## Customer Cart Mutation Semantics
+
+- Cart entries are line-based and identified by `cartItemId` from `GET /customer/cart`.
+- Cart edit controls on `node-id=1-196` map to line-quantity mutation:
+  - `+` increments quantity by `1`.
+  - `-` decrements quantity by `1`.
+  - when quantity reaches `0`, the line is removed from the cart.
+- In-place variant reconfiguration inside the cart is out of scope for Slice B customer flow. Replacement flow is explicit: add desired configuration from product details, then decrement or remove the obsolete cart line.
+- Checkout must remain disabled when cart becomes empty after mutations.
+
 ## Validation And Error States
 
 | Surface | Condition | Expected behavior |
@@ -77,12 +87,10 @@ Backoffice file base:
 | Backoffice orders | Reject action without reason | Submission is blocked until a reason is provided |
 | Backoffice tabs | User lacks required role | Tab is hidden and corresponding route or action is denied |
 
-## Open Clarification Gate
+## Clarification Status
 
-- Follow-up analysis issue `#19` owns the missing implementation inputs for Slice B customer flow:
-  - editable cart mutation semantics and required customer cart API contract;
-  - dedicated order-history screen composition and exact frame mapping.
-- Frontend issue `#13` remains blocked until `#19` closes these gaps.
+- Follow-up analysis issue `#19` resolves the customer-flow clarification gate.
+- Remaining delivery dependency is implementation of the cart mutation contract by backend follow-up issue `#20`.
 
 ## Accessibility / UX Notes
 

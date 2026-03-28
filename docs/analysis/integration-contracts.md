@@ -5,8 +5,9 @@
 | Contract | Producer | Consumer | Request | Response / Event | Notes |
 | --- | --- | --- | --- | --- | --- |
 | `GET /customer/menu` | Backend | Customer web app | Telegram-authenticated customer context | Categories with products, prices, sizes, addon groups, and availability | Must exclude unavailable ordering paths as defined by product rules |
-| `POST /customer/cart/items` | Backend | Customer web app | Product id, selected size, selected addons | Updated cart snapshot | Rejects invalid size or addon combinations |
-| `GET /customer/cart` | Backend | Customer web app | Customer context | Current editable cart | Cart remains editable before order placement |
+| `POST /customer/cart/items` | Backend | Customer web app | Product id, selected size, selected addons | Updated cart snapshot with line identifiers and quantities | Rejects invalid size or addon combinations |
+| `POST /customer/cart/items/:id/quantity` | Backend | Customer web app | `cartItemId` path parameter and `{ delta: 1 | -1 }` payload | Updated cart snapshot after quantity mutation | `delta=1` increments quantity; `delta=-1` decrements quantity; when quantity becomes `0`, the line is removed |
+| `GET /customer/cart` | Backend | Customer web app | Customer context | Current editable cart | Returns line-based cart entries with stable `cartItemId` and `quantity` fields |
 | `GET /customer/slots` | Backend | Customer web app | Current date context | Available current-day 10-minute slots with capacity state | Uses configured working hours and slot capacity |
 | `POST /customer/orders` | Backend | Customer web app | Cart snapshot reference or item payload plus selected slot | Created order summary with status `Created` | Fails when slot is full, cart invalid, or item unavailable |
 | `GET /customer/orders` | Backend | Customer web app | Customer context | Customer order history | Must return only current user's orders |

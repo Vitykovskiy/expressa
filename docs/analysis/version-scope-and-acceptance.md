@@ -37,7 +37,7 @@ Issue `#2` closes only the first delivery slice:
 
 | Criterion | Source scenario | How to validate |
 | --- | --- | --- |
-| Customer can browse menu, configure a product, add it to cart, select a slot, and create an order | `CUS-01` | Smoke and e2e test the end-to-end customer flow from menu to `Created` order |
+| Customer can browse menu, configure a product, add/edit cart contents, select a slot, and create an order | `CUS-01` | Smoke and e2e test the end-to-end customer flow from menu to `Created` order, including cart quantity mutation behavior |
 | Customer can view order history and receives status notifications including rejection reason | `CUS-02` | E2E validates history visibility and contract tests validate notification payload content |
 | Barista can confirm, reject with reason, mark ready, and close an order | `BAR-01` | Smoke and e2e validate status transitions and UI actions in backoffice |
 | Slot-capacity accounting follows status rules | `CUS-01`, `BAR-01` | Backend tests and e2e validate capacity consumption for active statuses only |

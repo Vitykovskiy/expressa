@@ -8,7 +8,9 @@ Implementation, deploy, and e2e tasks work from these artifacts as their canonic
 
 - Source issue: `#2`
 - Slice: `Slice A - Infrastructure and backend foundation for customer ordering and backoffice operations`
-- Follow-up analysis issue: `#10` resolved frontend frame mapping and decomposition for Slice B
+- Follow-up analysis issues:
+  - `#10` resolved frontend frame mapping and decomposition for Slice B
+  - `#19` resolved customer cart/history clarification inputs for Slice B frontend flow
 
 ## Required Files
 
