@@ -2,7 +2,7 @@
 
 ## Current Decision Status
 
-Status: `TBD after business task intake and environment alignment`
+Status: `Partially defined for Slice A Stage 0 infrastructure; application stack remains TBD`
 
 The agent must not finalize this file before the business problem and delivery constraints are understood.
 
@@ -13,7 +13,7 @@ The agent must not finalize this file before the business problem and delivery c
 | Frontend | TBD | TBD | TBD | TBD |
 | Backend | TBD | TBD | TBD | TBD |
 | Data | TBD | TBD | TBD | TBD |
-| Infra | TBD | TBD | TBD | TBD |
+| Infra | GitHub Actions + VPS (Docker Engine + Docker Compose plugin) | Provides deterministic CI and remote runtime bootstrap before feature implementation | Manual VPS setup, self-hosted CI | Root-password-based access is temporary and should be replaced with SSH key flow |
 
 ## Official Documentation And Best Practices
 

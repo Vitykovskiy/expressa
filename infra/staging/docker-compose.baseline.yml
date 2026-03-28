@@ -1,0 +1,7 @@
+services:
+  baseline:
+    image: traefik/whoami:v1.10.1
+    container_name: expressa-stage0-baseline
+    ports:
+      - "18080:80"
+    restart: unless-stopped

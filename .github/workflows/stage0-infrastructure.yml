@@ -1,0 +1,66 @@
+name: Stage0 Infrastructure Baseline
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  ci-baseline:
+    name: ci-baseline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate shell scripts
+        run: |
+          set -euo pipefail
+          bash -n infra/vps/bootstrap.sh
+          bash -n infra/vps/deploy-baseline.sh
+
+      - name: Validate staging compose
+        run: |
+          set -euo pipefail
+          docker compose -f infra/staging/docker-compose.baseline.yml config >/dev/null
+
+  deploy-staging:
+    name: deploy-staging
+    needs:
+      - ci-baseline
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Copy stage0 assets to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_ROOT_USER }}
+          password: ${{ secrets.VPS_ROOT_PASSWORD }}
+          source: "infra/staging/docker-compose.baseline.yml,infra/vps/bootstrap.sh,infra/vps/deploy-baseline.sh"
+          target: "/tmp/expressa-stage0"
+
+      - name: Bootstrap VPS and deploy baseline service
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          ADMIN_TELEGRAM_ID: ${{ secrets.ADMIN_TELEGRAM_ID }}
+          DISABLE_TG_AUTH: ${{ secrets.DISABLE_TG_AUTH }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_ROOT_USER }}
+          password: ${{ secrets.VPS_ROOT_PASSWORD }}
+          script_stop: true
+          command_timeout: 30m
+          envs: ADMIN_TELEGRAM_ID,DISABLE_TG_AUTH
+          script: |
+            set -euo pipefail
+            chmod +x /tmp/expressa-stage0/infra/vps/bootstrap.sh
+            chmod +x /tmp/expressa-stage0/infra/vps/deploy-baseline.sh
+            /tmp/expressa-stage0/infra/vps/bootstrap.sh
+            ADMIN_TELEGRAM_ID="${ADMIN_TELEGRAM_ID}" DISABLE_TG_AUTH="${DISABLE_TG_AUTH}" /tmp/expressa-stage0/infra/vps/deploy-baseline.sh /tmp/expressa-stage0/infra/staging/docker-compose.baseline.yml
+            curl -fsS "http://127.0.0.1:18080/" >/dev/null
