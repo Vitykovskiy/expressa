@@ -20,7 +20,7 @@ Source design files:
 | Order history | Customer | Review current and past orders | Empty, populated | Must show current user's orders only on a dedicated history screen |
 | Backoffice orders tab | Barista, Administrator | Review incoming orders and perform status actions | Empty, queue present, action in progress, transition error | Actions include confirm, reject with reason, ready, close |
 | Backoffice availability tab | Barista, Administrator | Toggle temporary availability for items, options, and addons | Loading, editable, save error | Barista can change availability only, not structure or pricing |
-| Backoffice menu tab | Administrator | Manage categories, products, sizes, addons, and prices | Loading, editable, validation error | Hidden from barista; mobile frame is now mapped, but desktop frame and explicit error/save states are still missing in issue `#21` |
+| Backoffice menu tab | Administrator | Manage categories, products, sizes, addons, and prices | Loading, editable, validation error | Hidden from barista; mobile and desktop frames are mapped; loading and save/error feedback may follow shared backoffice interaction patterns without dedicated Figma states |
 | Backoffice users tab | Administrator | Assign barista role and block users | Loading, editable, validation error | Hidden from barista |
 | Backoffice settings tab | Administrator | Manage working hours and slot capacity | Loading, editable, validation error | Hidden from barista |
 
@@ -48,7 +48,7 @@ Backoffice file base:
 | Backoffice availability tab (mobile) | `https://www.figma.com/design/gFucXna9RTbuxNmyVukOYD/Expressa-Admin?node-id=3-281` | Full mobile availability screen |
 | Backoffice availability tab (desktop) | `https://www.figma.com/design/gFucXna9RTbuxNmyVukOYD/Expressa-Admin?node-id=3-2` | Full desktop availability screen |
 | Backoffice menu tab (mobile) | `https://www.figma.com/design/gFucXna9RTbuxNmyVukOYD/Expressa-Admin?node-id=67-3` | Full mobile menu screen with admin tab selection and category list |
-| Backoffice menu tab (desktop) | `missing (current file still has desktop nav-link only: https://www.figma.com/design/gFucXna9RTbuxNmyVukOYD/Expressa-Admin?node-id=2-830)` | Dedicated full-screen desktop menu surface is still not present in current Admin Figma source |
+| Backoffice menu tab (desktop) | `https://www.figma.com/design/gFucXna9RTbuxNmyVukOYD/Expressa-Admin?node-id=67-5` | Full desktop menu screen with side navigation and category list |
 | Backoffice users tab (mobile) | `https://www.figma.com/design/gFucXna9RTbuxNmyVukOYD/Expressa-Admin?node-id=3-738` | Full mobile users screen |
 | Backoffice users tab (mobile search state) | `https://www.figma.com/design/gFucXna9RTbuxNmyVukOYD/Expressa-Admin?node-id=3-853` | Mobile users search state |
 | Backoffice users tab (desktop) | `https://www.figma.com/design/gFucXna9RTbuxNmyVukOYD/Expressa-Admin?node-id=3-441` | Full desktop users screen |
@@ -60,14 +60,14 @@ Backoffice file base:
 | Screen group | Figma frame link status | Delivery impact |
 | --- | --- | --- |
 | Customer app screens | Mapped | Frontend customer implementation issues may be created with direct `figma_frame` links |
-| Backoffice app screens | Partially mapped | Orders, availability, users, settings, and mobile menu have full-screen mappings; desktop menu mapping and menu-state coverage are still missing in issue `#21` |
+| Backoffice app screens | Mapped | Frontend backoffice implementation issues may be created with direct `figma_frame` links for required mobile and desktop surfaces |
 
 ## Backoffice Responsive Shell Scope
 
 - Slice B backoffice UX target includes both mobile and desktop shell variants.
 - Mobile shell is represented by `TabBar`-based compositions (for example `node-id=2-455`, `3-281`, `3-738`, `3-1128`).
 - Desktop shell is represented by `SideNav`-based compositions (for example `node-id=1-2`, `3-2`, `3-441`, `3-969`).
-- Frontend issue `#14` must implement both shell variants for mapped tabs and role visibility, but remains blocked for desktop menu mapping and menu-specific state coverage.
+- Frontend issue `#14` must implement both shell variants for mapped tabs and role visibility. Missing loading/save/error visuals for menu may follow shared backoffice interaction patterns and canonical validation rules without extra Figma frames.
 
 ## Interaction Rules
 
@@ -105,7 +105,7 @@ Backoffice file base:
 - Follow-up analysis issue `#19` resolves the customer-flow clarification gate.
 - Remaining delivery dependency is implementation of the cart mutation contract by backend follow-up issue `#20`.
 - Follow-up issue `#21` resolves corrected full-screen mappings for backoffice availability/users/settings and confirms dual-shell responsive scope (mobile + desktop).
-- `#21` now includes the mobile menu screen at `node-id=67-3`, but remains blocked on missing dedicated desktop menu frame and explicit menu error/save-state coverage; frontend issue `#14` cannot resume until that external design input is provided.
+- `#21` resolves menu-tab mapping with mobile `node-id=67-3` and desktop `node-id=67-5`; menu loading/save/error states may be implemented from shared backoffice interaction rules and contract-driven validation without extra Figma states.
 
 ## Accessibility / UX Notes
 
