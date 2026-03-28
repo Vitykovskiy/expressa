@@ -1,0 +1,62 @@
+name: Slice A DevOps Validation Path
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  ci-slice-a-devops:
+    name: ci-slice-a-devops
+    runs-on: ubuntu-latest
+    env:
+      BACKEND_IMAGE: traefik/whoami:v1.10.1
+      POSTGRES_PASSWORD: slicea_ci_password
+      ADMIN_TELEGRAM_ID: "1"
+      DISABLE_TG_AUTH: "true"
+      BACKEND_PORT: "18081"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate scripts syntax
+        run: |
+          set -euo pipefail
+          bash -n infra/vps/deploy-slice-a-runtime.sh
+          bash -n infra/validation/run-smoke.sh
+          bash -n infra/validation/run-e2e.sh
+
+      - name: Validate Slice A compose
+        run: |
+          set -euo pipefail
+          docker compose -f infra/staging/docker-compose.slice-a.yml config >/dev/null
+
+      - name: Build smoke runner image
+        run: |
+          set -euo pipefail
+          docker build -t expressa-slicea-smoke-runner:ci -f infra/validation/Dockerfile.smoke infra/validation
+
+      - name: Start local slice-a runtime path
+        run: |
+          set -euo pipefail
+          docker compose -f infra/staging/docker-compose.slice-a.yml up -d
+
+      - name: Run smoke entrypoint
+        run: |
+          set -euo pipefail
+          chmod +x infra/validation/run-smoke.sh
+          infra/validation/run-smoke.sh "http://127.0.0.1:${BACKEND_PORT}"
+
+      - name: Verify e2e entrypoint path
+        run: |
+          set -euo pipefail
+          chmod +x infra/validation/run-e2e.sh
+          infra/validation/run-e2e.sh
+
+      - name: Stop local slice-a runtime path
+        if: always()
+        run: |
+          set -euo pipefail
+          docker compose -f infra/staging/docker-compose.slice-a.yml down -v

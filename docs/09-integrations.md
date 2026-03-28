@@ -94,6 +94,15 @@ Document every external system that matters to development, deploy, or e2e valid
   - `https://github.com/Vitykovskiy/expressa/actions/runs/23677699654`
 - Result: `ci-baseline` and `deploy-staging` passed; VPS health-check endpoint returned HTTP 200
 
+## Slice A DevOps Validation Path
+
+- Validation workflow: `.github/workflows/slice-a-devops-validation.yml`
+- Runtime contract: `docs/delivery/slice-a-runtime-validation-path.md`
+- Runtime manifest: `infra/staging/docker-compose.slice-a.yml`
+- Deployment script: `infra/vps/deploy-slice-a-runtime.sh`
+- Validation entrypoints: `infra/validation/run-smoke.sh`, `infra/validation/run-e2e.sh`
+- CI runtime image for path validation: `traefik/whoami:v1.10.1` (temporary contract image before backend artifact publication)
+
 ## Setup Notes
 
 - Update this file as integrations are connected or changed.
