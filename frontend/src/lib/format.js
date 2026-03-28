@@ -1,0 +1,53 @@
+const statusLabels = {
+  Created: "Создан",
+  Confirmed: "Подтверждён",
+  "Ready for pickup": "Готов",
+  Rejected: "Отклонён",
+  Closed: "Выдан"
+};
+
+export function formatRub(value) {
+  return `${value} ₽`;
+}
+
+export function formatOrderCount(count) {
+  const tail = count % 10;
+  const teen = count % 100;
+  if (teen >= 11 && teen <= 14) {
+    return `${count} заказов`;
+  }
+  if (tail === 1) {
+    return `${count} заказ`;
+  }
+  if (tail >= 2 && tail <= 4) {
+    return `${count} заказа`;
+  }
+  return `${count} заказов`;
+}
+
+export function formatItemCount(count) {
+  if (count === 1) {
+    return "1 позиция";
+  }
+  if (count >= 2 && count <= 4) {
+    return `${count} позиции`;
+  }
+  return `${count} позиций`;
+}
+
+export function formatSlot(slot) {
+  return `${slot.start} - ${slot.end}`;
+}
+
+export function formatOrderStatus(status) {
+  return statusLabels[status] ?? status;
+}
+
+export function formatOrderMeta(order) {
+  const date = new Date(order.createdAt);
+  const day = date.getUTCDate();
+  const hour = String(date.getUTCHours()).padStart(2, "0");
+  const minute = String(date.getUTCMinutes()).padStart(2, "0");
+  const months = ["янв", "фев", "мар", "апр", "мая", "июн", "июл", "авг", "сен", "окт", "ноя", "дек"];
+  return `${day} ${months[date.getUTCMonth()]}, ${hour}:${minute} · ${formatItemCount(order.items.length)}`;
+}
