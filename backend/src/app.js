@@ -9,14 +9,19 @@ function parseBoolean(value, fallbackValue) {
 }
 
 function createConfigFromEnv(env = process.env) {
-  const adminTelegramId = env.ADMIN_TELEGRAM_ID;
+  const disableTgAuth = parseBoolean(env.DISABLE_TG_AUTH, false);
+  const rawAdminTelegramId = env.ADMIN_TELEGRAM_ID;
+  const trimmedAdminTelegramId =
+    typeof rawAdminTelegramId === "string" ? rawAdminTelegramId.trim() : rawAdminTelegramId;
+  const adminTelegramId =
+    trimmedAdminTelegramId || (disableTgAuth ? "1001" : undefined);
   if (!adminTelegramId) {
     throw new Error("ADMIN_TELEGRAM_ID is required");
   }
 
   return {
     adminTelegramId: String(adminTelegramId),
-    disableTgAuth: parseBoolean(env.DISABLE_TG_AUTH, false),
+    disableTgAuth,
     defaultBaristaTelegramId: String(env.BARISTA_TELEGRAM_ID ?? "2001"),
     defaultCustomerTelegramId: String(env.CUSTOMER_TELEGRAM_ID ?? "3001")
   };
