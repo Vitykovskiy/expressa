@@ -44,7 +44,7 @@ Issue `#2` closes only the first delivery slice:
 | Barista can load full availability data (including unavailable entities) and change temporary availability without changing menu structure or prices | `BAR-02` | Backoffice UI and API tests validate shared availability read-model visibility and mutation access boundaries |
 | Administrator can manage menu, prices, working hours, slot capacity, roles, and blocked users | `ADM-01`, `ADM-02` | E2E validates restricted tabs and successful admin actions |
 | Audit data stores the responsible barista for confirm, ready, and reject actions | `BAR-01` | Backend tests and smoke verification inspect persisted audit fields |
-| Empty database bootstrap creates administrator and seed data required for smoke flow | Supporting setup | Smoke test initializes empty DB and verifies seeded baseline entities |
+| Empty database bootstrap creates administrator and seed data required for smoke flow | Supporting setup | Smoke test initializes empty DB, verifies seeded baseline entities, and in test mode (`DISABLE_TG_AUTH=true`) bootstraps the root admin with `ADMIN_TELEGRAM_ID` when provided or the fixed test id `1001` when omitted |
 | Push pipeline deploys or updates test environment and runs build, smoke, and e2e | Release process | CI validation on VPS is required before merge |
 
 ## Slice A Acceptance Criteria

@@ -29,11 +29,13 @@
 
 | Variable | Required | Purpose | Stage first needed | Status |
 | --- | --- | --- | --- | --- |
-| `ADMIN_TELEGRAM_ID` | Yes | Defines the single root administrator to upsert on backend startup | `implementation` | Configured in GitHub Secrets and consumed by backend bootstrap |
+| `ADMIN_TELEGRAM_ID` | Yes (unless `DISABLE_TG_AUTH=true`) | Defines the single root administrator to upsert on backend startup | `implementation` | Required in production; in test mode defaults to `1001` when unset |
 | `DISABLE_TG_AUTH` | Yes for test environment | Disables Telegram auth validation in test runs and switches backend to seeded identities | `e2e` | Configured in GitHub Secrets and propagated to `/opt/expressa/staging/.env` by Stage0 workflow |
 | `BARISTA_TELEGRAM_ID` | Optional | Defines seeded barista identity for test mode | `implementation` | Optional for backend; defaults to `2001` when unset |
 | `CUSTOMER_TELEGRAM_ID` | Optional | Defines seeded customer identity for test mode | `implementation` | Optional for backend; defaults to `3001` when unset |
 | `POSTGRES_PASSWORD` | Yes for Slice A runtime deploy | Sets database password for the staging PostgreSQL container | `deploy` | Configured in GitHub Secrets for deploy workflow |
+| `BACKEND_IMAGE` | Yes for deploy (test default exists) | Backend runtime image reference for Slice B deploy | `deploy` | Defaults to `ghcr.io/vitykovskiy/expressa-backend:slice-b-latest` when omitted in test mode |
+| `FRONTEND_IMAGE` | Yes for deploy (test default exists) | Frontend runtime image reference for Slice B deploy | `deploy` | Defaults to `ghcr.io/vitykovskiy/expressa-frontend:slice-b-latest` when omitted in test mode |
 | `VPS_HOST` | Yes for VPS operations | Defines the target VPS host for deployment and operational access | `infrastructure` | Configured in local `.env` and GitHub Secrets |
 | `VPS_ROOT_USER` | Yes for current VPS access flow | Defines the root SSH user for VPS administrative access | `infrastructure` | Configured in local `.env` and GitHub Secrets |
 | `VPS_ROOT_PASSWORD` | Yes for current VPS access flow | Defines the root password used for VPS administrative access | `infrastructure` | Configured in local `.env` and GitHub Secrets |

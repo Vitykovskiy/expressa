@@ -13,6 +13,7 @@ Implementation, deploy, and e2e tasks work from these artifacts as their canonic
   - `#19` resolved customer cart/history clarification inputs for Slice B frontend flow
   - `#21` resolved backoffice full-screen mapping and responsive shell scope for Slice B
   - `#22` resolved barista-capable backoffice availability read-model contract for Slice B
+  - `#24` clarifies test-mode admin bootstrap and deploy artifact policy for Slice B
 
 ## Required Files
 

@@ -21,10 +21,10 @@ This document is the devops handoff for implementation issue `#15`.
 
 ## Runtime Variables
 
-- `BACKEND_IMAGE` (required for deploy)
-- `FRONTEND_IMAGE` (required for deploy)
+- `BACKEND_IMAGE` (required in production; optional in test mode, defaults to `ghcr.io/vitykovskiy/expressa-backend:slice-b-latest`)
+- `FRONTEND_IMAGE` (required in production; optional in test mode, defaults to `ghcr.io/vitykovskiy/expressa-frontend:slice-b-latest`)
 - `POSTGRES_PASSWORD` (required)
-- `ADMIN_TELEGRAM_ID` (required)
+- `ADMIN_TELEGRAM_ID` (required in production; optional in test mode, defaults to `1001` when unset)
 - `DISABLE_TG_AUTH` (required)
 - `POSTGRES_DB` (optional, default `expressa`)
 - `POSTGRES_USER` (optional, default `expressa`)
@@ -46,5 +46,11 @@ This document is the devops handoff for implementation issue `#15`.
 ## Operational Notes
 
 - The validation workflow uses `traefik/whoami` as a backend stand-in to verify frontend routing and proxy wiring in CI.
-- Production and staging deployment should pass actual backend and frontend image references to `deploy-slice-b-runtime.sh`.
+- Production deployment must pass actual backend and frontend image references to `deploy-slice-b-runtime.sh`.
+- Test environment deployment may omit image refs to use the default `slice-b-latest` tags.
 - When issue `#16` delivers executable e2e assets, set `E2E_STRICT=true` in the calling context so missing assets fail the pipeline.
+
+## Test-Env Artifact Policy
+
+- CI publishes test images to GHCR as `ghcr.io/vitykovskiy/expressa-backend:slice-b-latest` and `ghcr.io/vitykovskiy/expressa-frontend:slice-b-latest`.
+- Deploy uses the `slice-b-latest` tags when `BACKEND_IMAGE` or `FRONTEND_IMAGE` are omitted in test mode.

@@ -69,6 +69,12 @@
 | Telegram backoffice bot | Entry point for backoffice web app and barista reminders | Backoffice launch context plus `order.awaiting_action` reminder payloads | Failed reminders must be observable; exact retry/escalation policy is deferred to follow-up system analysis |
 | Telegram auth validation | Production request identity verification | Telegram WebApp auth contract | Test environment bypasses validation with `DISABLE_TG_AUTH=true` |
 
+## Test-Mode Identity Bootstrap
+
+- When `DISABLE_TG_AUTH=true`, the backend accepts seeded identities without Telegram validation.
+- `ADMIN_TELEGRAM_ID` is optional in test mode. If it is empty or unset, the backend must bootstrap the root administrator using the fixed test id `1001`.
+- Seeded barista and customer ids remain `2001` and `3001` unless explicitly overridden by existing optional env vars.
+
 ## Rule
 
 Implementation contours must consume or produce contracts from this file. If a required contract is missing, return to `analysis`.

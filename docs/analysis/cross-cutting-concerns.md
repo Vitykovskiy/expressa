@@ -23,6 +23,7 @@
 ## Operational Notes
 
 - The test environment must seed a barista and a customer with fixed Telegram identifiers for smoke and e2e execution.
+- In test mode (`DISABLE_TG_AUTH=true`), `ADMIN_TELEGRAM_ID` is optional. When it is empty or unset, the backend must bootstrap the root administrator using the fixed test id `1001` and treat that user as the immutable root admin for the environment.
 - Smoke setup must set working hours to `00:00-23:59` to avoid time-window flakiness during execution.
 - Reminder cadence is deferred from slice A and must be finalized in a follow-up `system_analysis` issue before reminder implementation tasks move to `Ready`.
 
