@@ -31,9 +31,9 @@ See `AGENTS.md` for routing and `docs/07-workflow.md` for the canonical workflow
 - Workflow state file: `.ai-dev-template.workflow-state.json`
 - Current mode: `issue_driven`
 - Active initiative: `#1 [Initiative] Стартовая delivery-цепочка и baseline-спецификация Expressa`
-- Active issue signal: `#20 [Implementation][Backend] Slice B customer cart mutation contract`
-- Current owner role: `backend`
-- Delivery status: `Slice A complete; slice-B analysis clarifications from #19 are complete; frontend issue #13 is blocked only by backend cart-mutation implementation #20`
+- Active issue signal: `#11 [Block Delivery] Slice B frontend customer/backoffice integration`
+- Current owner role: `system-analyst`
+- Delivery status: `Slice A complete; #20 is done; #21 confirmed responsive backoffice mappings but remains blocked by missing dedicated menu-tab design input; frontend issue #14 stays blocked`
 
 ## Canonical Artifact Map
 
