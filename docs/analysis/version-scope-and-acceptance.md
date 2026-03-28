@@ -1,5 +1,13 @@
 # Version Scope And Acceptance
 
+## Bounded Analysis Slice For Issue #2
+
+Issue `#2` closes only the first delivery slice:
+
+- `Slice A - Infrastructure and backend foundation for customer ordering and backoffice operations`.
+- This slice is intentionally frontend-excluded because direct Figma frame links are not yet available per screen.
+- Frontend delivery and any UI-bound acceptance criteria are routed to a follow-up `system_analysis` issue.
+
 ## Version Boundary
 
 ### In Scope
@@ -38,6 +46,21 @@
 | Audit data stores the responsible barista for confirm, ready, and reject actions | `BAR-01` | Backend tests and smoke verification inspect persisted audit fields |
 | Empty database bootstrap creates administrator and seed data required for smoke flow | Supporting setup | Smoke test initializes empty DB and verifies seeded baseline entities |
 | Push pipeline deploys or updates test environment and runs build, smoke, and e2e | Release process | CI validation on VPS is required before merge |
+
+## Slice A Acceptance Criteria
+
+| Criterion | Source scenario | How to validate |
+| --- | --- | --- |
+| Infrastructure baseline is ready for delivery execution (VPS target, CI pipeline, secrets wiring, runtime bootstrap) | Supporting setup | Infrastructure issue evidence and successful pipeline run |
+| Backend APIs for customer ordering and backoffice order lifecycle are contract-defined and implementation-ready | `CUS-01`, `BAR-01` | Backend implementation tasks consume contracts in `integration-contracts.md` without additional analysis |
+| Backend rules for slot capacity, rejection reason, role checks, and audit fields are fully specified for implementation | `CUS-01`, `BAR-01`, `ADM-02` | Backend tests can be derived directly from `domain-model.md` and `cross-cutting-concerns.md` |
+| Block-level validation path is defined via child implementation, deploy, and e2e tasks | Release process | GitHub dependency chain exists and is project-tracked |
+
+## Deferred To Follow-Up Analysis
+
+- Exact per-screen Figma frame links for all customer and backoffice screens.
+- Frontend implementation decomposition tied to those frame links.
+- Reminder cadence and escalation policy for `order.awaiting_action`.
 
 ## Release Gate
 

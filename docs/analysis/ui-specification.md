@@ -1,5 +1,14 @@
 # UI Specification
 
+## Bounded Slice Note
+
+The active bounded slice in issue `#2` does not include frontend implementation tasks.
+
+Reason:
+
+- the required direct Figma frame links are missing for listed screens;
+- frontend implementation tasks must not be created until those links are recorded in a follow-up `system_analysis` issue.
+
 ## Screens And Interfaces
 
 | Screen / interface | User | Goal | States | Notes |
@@ -14,6 +23,13 @@
 | Backoffice menu tab | Administrator | Manage categories, products, sizes, addons, and prices | Loading, editable, validation error | Hidden from barista |
 | Backoffice users tab | Administrator | Assign barista role and block users | Loading, editable, validation error | Hidden from barista |
 | Backoffice settings tab | Administrator | Manage working hours and slot capacity | Loading, editable, validation error | Hidden from barista |
+
+## Figma Frame Gating
+
+| Screen group | Figma frame link status | Delivery impact |
+| --- | --- | --- |
+| Customer app screens | Missing | Frontend tasks blocked until follow-up analysis publishes direct frame links (`node-id=`) |
+| Backoffice app screens | Missing | Frontend tasks blocked until follow-up analysis publishes direct frame links (`node-id=`) |
 
 ## Interaction Rules
 
@@ -41,4 +57,4 @@
 - Customer UX must remain simple, clear, and mobile-first inside Telegram web app constraints.
 - Backoffice UX must minimize operational friction for daily use by baristas.
 - Vuetify implementation should preserve role clarity and fast access to order actions rather than forcing deep navigation.
-- Exact `figma_frame` links still need to be recorded per screen before frontend implementation issues are created.
+- Exact `figma_frame` links must be recorded per screen in follow-up analysis before any frontend implementation issue moves to `Ready`.

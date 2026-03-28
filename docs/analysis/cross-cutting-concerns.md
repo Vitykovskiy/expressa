@@ -24,4 +24,9 @@
 
 - The test environment must seed a barista and a customer with fixed Telegram identifiers for smoke and e2e execution.
 - Smoke setup must set working hours to `00:00-23:59` to avoid time-window flakiness during execution.
-- Reminder cadence is still open and should be finalized before reminder implementation tasks move to `Ready`.
+- Reminder cadence is deferred from slice A and must be finalized in a follow-up `system_analysis` issue before reminder implementation tasks move to `Ready`.
+
+## Slice A Guardrails
+
+- No frontend implementation issue is allowed in slice A because `figma_frame` links are not yet specified.
+- Backend and devops tasks in slice A must not assume unapproved UI behavior beyond contracts already fixed in `integration-contracts.md`.

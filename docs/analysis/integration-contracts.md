@@ -34,7 +34,7 @@
 | Integration | Purpose | Contract reference | Failure handling |
 | --- | --- | --- | --- |
 | Telegram customer bot | Entry point for customer web app and order-status notifications | Customer launch context plus `order.status_changed` notification payloads | Failed deliveries must not change order state; retry strategy to be finalized in analysis or delivery |
-| Telegram backoffice bot | Entry point for backoffice web app and barista reminders | Backoffice launch context plus `order.awaiting_action` reminder payloads | Failed reminders must be observable; exact retry/escalation policy remains open |
+| Telegram backoffice bot | Entry point for backoffice web app and barista reminders | Backoffice launch context plus `order.awaiting_action` reminder payloads | Failed reminders must be observable; exact retry/escalation policy is deferred to follow-up system analysis |
 | Telegram auth validation | Production request identity verification | Telegram WebApp auth contract | Test environment bypasses validation with `DISABLE_TG_AUTH=true` |
 
 ## Rule

@@ -4,6 +4,12 @@
 
 Implementation, deploy, and e2e tasks work from these artifacts as their canonical behavior source.
 
+## Active Bounded Slice
+
+- Source issue: `#2`
+- Slice: `Slice A - Infrastructure and backend foundation for customer ordering and backoffice operations`
+- Explicitly deferred: frontend decomposition pending direct Figma frame links per screen
+
 ## Required Files
 
 - `problem-context.md`
