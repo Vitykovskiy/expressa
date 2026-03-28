@@ -85,7 +85,7 @@ Document every external system that matters to development, deploy, or e2e valid
 - GitHub repository access: `Validated`
 - GitHub Project access: `Validated`
 - Deployment environment access: `Validated by Stage0 workflow run 23677665147 and external HTTP 200 check on 2026-03-28`
-- E2E environment readiness: `Not ready; waiting for implementation #7 and deploy #8`
+- E2E environment readiness: `Partially ready; QA assets from #7 are available, waiting for deploy #8 to run integrated validation #9`
 
 ## Stage0 Infrastructure Baseline
 
@@ -111,6 +111,14 @@ Document every external system that matters to development, deploy, or e2e valid
 - Tests: `backend/tests/api.test.js`
 - Runtime image definition: `backend/Dockerfile`
 - Backend handoff contract: `docs/delivery/slice-a-backend-handoff.md`
+
+## Slice A QA Assets Path
+
+- QA assets workflow: `.github/workflows/slice-a-qa-assets-validation.yml`
+- QA entrypoint: `tests/e2e/run.sh`
+- QA scenario runner: `tests/e2e/slice-a-api.e2e.mjs`
+- QA fixtures: `tests/e2e/fixtures/*`
+- QA handoff contract: `docs/delivery/slice-a-qa-handoff.md`
 
 ## Setup Notes
 
